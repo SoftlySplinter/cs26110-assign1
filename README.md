@@ -8,13 +8,13 @@
 
 Figure 1 shows a 2-ply tree generated for game playing between two players, MAX and MIN. The numbers at each leaf node are the values obtained by applying a utility function to each terminal state, with higher numbers showing a better result for MAX.
 
-![]()
+![Figure 1](figure1.png)
 
-a) Using the tree in figure 1, and the minimax algorithm, what are the utility values for the nodes X1, X2, X3 and Y1? [4 marks]
-b) Which branch should MAX follow in order to make his best first move? Following this move by MAX, which branch would then be the best choice for MIN? [4]
-c) Using the tree in Figure 1, state which branches would not be examined during alpha-beta pruning and give an explanation as to why not. [6]
-d) Why are heuristics important in the area of search? [6]
-e) What problems are encountered when using heuristics and how can these be overcome? Give examples to illustrate your answer. [10]
+1. Using the tree in figure 1, and the minimax algorithm, what are the utility values for the nodes X1, X2, X3 and Y1? [4 marks]
+2. Which branch should MAX follow in order to make his best first move? Following this move by MAX, which branch would then be the best choice for MIN? [4]
+3. Using the tree in Figure 1, state which branches would not be examined during alpha-beta pruning and give an explanation as to why not. [6]
+4. Why are heuristics important in the area of search? [6]
+5. What problems are encountered when using heuristics and how can these be overcome? Give examples to illustrate your answer. [10]
 
 ## Assignment Part 2
 

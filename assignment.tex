@@ -1,0 +1,212 @@
+\documentclass[10pt,letterpaper]{article}
+
+\usepackage{hyperref}
+\usepackage{geometry}
+
+\usepackage{array}
+\def\name{Alexander David Brown}
+
+\hypersetup{
+colorlinks = true,
+urlcolor = black,
+pdfauthor = {\name},
+pdfkeywords = {},
+pdftitle = {\name: CS26010 Assignment},
+pdfsubject = {CS26010 Assignment},
+pdfpagemode = UseNone
+}
+
+\geometry{
+body={7.0in, 10.0in},
+left=0.75in,
+top=0.75in
+}
+
+% Customize page headers
+\pagestyle{myheadings}
+\markright{\name}
+\thispagestyle{empty}
+
+% Don't indent paragraphs.
+\setlength\parindent{0em}
+
+
+\title{CS26010 - Assignment 2010/11}
+\author{\name}
+
+\begin{document}
+  \maketitle
+  \section{Assignment Part 1}
+    \renewcommand{\labelenumi}{\textbf{\alph{enumi})}}
+    \begin{enumerate}
+    
+    \item 
+      \begin{description}
+	\item[ X1:] 3
+	\item[ X2:] 5
+	\item[ X3:] 2
+	\item[ Y1:] 5
+      \end{description}
+    \item 
+      \begin{description}
+	\item[ Best move for MAX:] A2
+	\item[ Best move for MIN:] A21
+      \end{description}
+      
+    \item 
+      \begin{description}
+	\item[ Unexamined Branches:] A32 
+	\item[ Explanation:] All nodes at \emph{X1} would be opened, the minimum of these is 3. All of \emph{X2}s branches would then be opened as none of them are less than 3. Finally, at \emph{X3}, \emph{A31} and \emph{A32} would be opened. As the value at \emph{A32} is 2. As 2\textless  3, the final branch, \emph{A33} is not opened. 
+      \end{description}
+      
+    \item Whilst uninformed search is good in a constrained environment, the algorithms it uses typically have an exponential time complexity. When a problem reaches a certain size it is not feasible to use brute force.
+      
+      Heuristics can give us a workable solution in a reasonable amount of time, allowing for a more practical way of determining a solution for which a brute force algorithm might spend several hours finding the best solution.
+      
+      Heuristics (like the Hill Climbing Algorithm) can also allow us to deal with infinite search states as not all states are explored as the heuristic function guides the search.
+      
+      Heuristics are also useful for graph based searches where expanding every node may not be feasible, or for problems like the Traveling Salesperson where the number of combinations and permeations is factorial.
+  
+    \item
+      Heuristics like the hill climbing algorithm tend to return to a local minima, rather than the global minima. This tends to leave the algorithm stuck in a sub-optimal solution.
+      
+      This can be solved using restarting to a random location and running the algorithm several times, saving the lowest found values. Again this might not find the global minima, but it is more likely to find a local minima closer to the global and in a reasonable amount of time.
+      
+      Plateaus can also skew the results of the hill climbing algorithm, as there is no one 'right' way in which to move. Most algorithms use a random walk to cope with this.
+      
+      One can also apply simulated annealing to the hill climbing algorithm. When a local minima is found the algorithm then 'jumps' to another point on the state space and starts again. This then repeats with consecutively smaller jumps and typically a better result is found.
+      
+      Heuristics are only as good as the heuristic function which they use. However, a heuristic function might give a perfect result but it could also take more time to produce said result that it takes longer than an uninformed search.
+  
+      It should be noted that the weaknesses of heuristics are often strengths as well.
+  \end{enumerate}
+  
+  \newpage
+  \section{Assignment Part 2}
+  
+    \subsection{Notes}
+      \subsubsection{Identifiers}
+	\begin{description}
+	  \item[\(b\)] The number of moves that can be made (\(p-1\) in most cases).
+	  \item[\(d\)] The depth of the solution (\((p-1)^n-1\)).
+	  \item[\(l\)] The depth limit set for the Depth Limited Search. (\(d\) to get the best solution).
+	  \item[\(m\)] The maximum depth of the solution (potentially \(\infty\) due to the way a search tree would loop the solution).
+	  \item[\(n\)] The number of disks.
+	  \item[\(p\)] The number of poles (3 typically).
+	\end{description}
+      \subsubsection{Non-applicable Algorithms}
+	The Uniform Cost Algorithm is not applicable to this problem as the path cost is always one and will therefore act as a Breadth First Search.
+  
+    \subsection{Breadth First Search}
+      \subsubsection{Time Complexity}
+	The time complexity for the Breadth First Search is \(b^d\).
+    
+      \subsubsection{State Space}
+	The state space for the Breadth First Search is \(b^d\).
+      
+      \subsubsection{Completeness}
+	The Breadth First Search will give a complete solution to the Towers on Hanoi.
+	
+      \subsubsection{Optimality}
+	The Breadth First Search will produce an optimal solution for the puzzle.
+    
+    \subsection{Depth First Search}
+      \subsubsection{Time Complexity}
+	The time complexity for the Depth First Search is \(b^m\).
+    
+      \subsubsection{State Space}
+	The state space for the Depth First Search is \(bm\).
+      
+      \subsubsection{Completeness}
+	The Depth First Search will not give a complete solution to the Towers on Hanoi and will likely get trapped in loops.
+	
+      \subsubsection{Optimality}
+	The Depth First Search will not produce an optimal solution for the puzzle.
+    
+    \subsection{Depth Limited Search}
+      \subsubsection{Time Complexity}
+	The time complexity for the Depth Limited Search is \(b^l\).
+    
+      \subsubsection{State Space}
+	The state space for the Depth Limited Search is \(bl\).
+      
+      \subsubsection{Completeness}
+	The Depth Limited Search will give a complete solution to the puzzle, assuming \(l \geq d\).
+	
+      \subsubsection{Optimality}
+	The Depth First Search will not produce an optimal solution for the puzzle.
+    
+    \subsection{Iterative Deepening}
+      \subsubsection{Time Complexity}
+	The time complexity for Iterative Deepening is \(b^d\).
+    
+      \subsubsection{State Space}
+	The state space for Iterative Deepening is \(bd\).
+      
+      \subsubsection{Completeness}
+	Iterative Deepening will give a complete solution to the puzzle.
+	
+      \subsubsection{Optimality}
+	Iterative Deepening will produce an optimal solution for the puzzle.
+    
+    \subsection{Bi-directional Search}
+      \subsubsection{Time Complexity}
+	The time complexity for the Bi-directional Search is \(b^{d/2}\).
+    
+      \subsubsection{State Space}
+	The state space for the Bi-directional Search is \(b^{d/2}\).
+      
+      \subsubsection{Completeness}
+	The Bi-directional will give a complete solution to the puzzle.
+	
+      \subsubsection{Optimality}
+	The Bi-directional will produce an optimal solution for the puzzle.
+    
+    \subsection{Comparison}
+      For \(p=3\) and \(n=3\)
+      
+      \subsubsection{Breadth First Search}
+	Time Complexity \(=2^{(2^3-1)} = 2^7 = 128\)
+	
+	Space Complexity \(=2^{(2^3-1)} = 2^7 = 128\)
+	
+	The Breadth First Search is one of the simplest searches to run on the Towers of Hanoi puzzle as it can be implemented with ease and will always give a optimal and complete result.
+	However it has the drawbacks of having a large time and space complexity. Even for a small number of disks it is fairly inefficient, especially when contrasted to other search algorithms.
+      
+      \subsubsection{Depth First Search}
+	Time Complexity \(=2^{(2^\infty-1)} = 2^7 = \infty\)
+	
+	Space Complexity \(=2\times\infty = \infty\)
+	
+	Due to the nature of the Towers of Hanoi puzzle, a Depth First Search is not a useful search as the puzzle tends to loop a lot. This makes the time and space complexity of the Depth First Search potentially limited as it is prone to getting stuck in loops.
+      
+      \subsubsection{Depth Limited Search}
+	Time Complexity \(=2^{(2^3-1)} = 2^7 = 128\)
+	
+	Space Complexity \(= 2\times(2^3-1) = 2\times7 = 14\)
+	
+	The problems with the Depth First Search can be countered by using a Depth Limited Search. This is one of the more favorable search techniques for this puzzle as the depth of the solution is always known.
+	The time complexity is still exponential and therefore still inefficient for a larger number of disks.
+      
+      \subsubsection{Iterative Deepening}
+	Time Complexity \(=2^{(2^3-1)} = 2^7 = 128\)
+	
+	Space Complexity \(= 2\times(2^3-1) = 2\times7 = 14\)
+	
+	Iterative Deepening is another way to rectify the problems of the Depth First Search, however it is not as useful as a Depth Limited Search as the depth of the puzzle is actually know.
+	It should be noted that due to the iterations involved with Iterative Deepening, it is actually slower that the Depth Limited Search, though it is still exponential.
+      
+      \subsubsection{Bi-directional Search}
+	Time Complexity \(=2^{(2^3-1)/2} = 2^{7/2} = 12\)
+	
+	Space Complexity \(=2^{(2^3-1)/2} = 2^{7/2} = 12\)
+	
+	Bi-directional Search is probably the most relevant of the uniformed searches, as both the start and goal state are well defined. This is reflected by a relatively low time complexity.
+	For a larger number of disks it may be best to chose the Depth Limited Search for it's good space complexity.
+	
+      \subsection{A word on heuristic and other algorithms}
+	I haven't included heuristics in the comparisons as most goal functions would generally make it more difficult to find the solution. Also as the monks are looking for a complete solution heuristics have limited use as they are better at finding a decent solution to a problem rather than a complete one.
+	
+	It should also be noted that working out an algorithm for this problem would actually be the best route as the puzzle lends itself those solutions.
+
+\end{document}
